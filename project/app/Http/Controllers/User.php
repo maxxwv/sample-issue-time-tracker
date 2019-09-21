@@ -32,8 +32,13 @@ class User extends Controller
                 $u->save();
             }
         }
-    }
-
+    }/**
+     * Calculate the number of seconds each user spent total.
+     * This is aimed at the it_should_provide_the_sum_of_all_users_time()
+     * test.
+     *
+     * @return void
+     */
     public function getTotalSeconds()
     {
         $users = UserModel::with('timelogs')->get();

@@ -8,6 +8,13 @@ use App\Timelog as TimelogModel;
 
 class Timelog extends Controller
 {
+    /**
+     * Hydrate the timelogs table - again, Guzzle for the JSON call, then insert into
+     * the table as necessary.
+     *
+     * @param Request $request
+     * @return void
+     */
     public function hydrate(Request $request)
     {
         $client = new Client();

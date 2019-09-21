@@ -32,7 +32,8 @@ class Component extends Controller
 
     /**
      * Create the query to grab all the pertinent records for the rollup query.
-     * Thought I was going to need the newly helper-ized calculateTime function,
+     * This is aimed at the it_should_return_composed_metadata() test.
+     * Thought I was going to need the helper-ized calculateTime() function,
      * but the DB::raw() method came to the rescue for SQL goodness!
      *
      * @return void

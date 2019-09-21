@@ -11,7 +11,7 @@ class Component extends Model
     ];
 
     /**
-     * Create the one-to-many relationship between components and issues
+     * Create the relationship between components and issues
      *
      * @return boolean
      */

@@ -15,8 +15,8 @@ class IssueComponent extends Controller
      * inclusion of ID in the seed data, so I'm truncating both the Issue and IssueComponent
      * tables.
      *
-     * It might be a bit of an overstep, but I'm also seeding both tables from this single
-     * controller as it seems a bit silly not to, honestly.
+     * It might be a bit of an overstep, but I'm also seeding both Issues and IssueComponents
+     * tables from this single controller as it seems a bit silly not to, honestly.
      *
      * @param Request $request
      * @return void
