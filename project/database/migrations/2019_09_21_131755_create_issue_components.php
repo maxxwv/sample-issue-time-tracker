@@ -15,8 +15,8 @@ class CreateIssueComponents extends Migration
     {
         Schema::create('issue_components', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('issue');
-            $table->bigInteger('component');
+            $table->bigInteger('issue_id');
+            $table->bigInteger('component_id');
             $table->timestamps();
         });
     }
