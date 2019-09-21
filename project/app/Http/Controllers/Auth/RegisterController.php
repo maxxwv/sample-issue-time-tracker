@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Symfony\Component\HttpFoundation\Request;
 
 class RegisterController extends Controller
 {
@@ -69,26 +68,5 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-    }
-
-    /**
-     *
-     */
-    public function register(Request $request)
-    {
-        $this->validator($request->all())->validate();
-        //Trigger the Register event for any observers
-        event(new Registered($user = $this->create($request->all())));
-        $this->guard()->login($user);
-        return $this->registered($request, $user) ?: redirect($this->redirectPath());
-    }
-
-    /**
-     *
-     */
-    protected function registered(Request $request, $user)
-    {
-        $user->generateToken();
-        return response()->json(['data' => $user->toArray()], 201);
     }
 }
