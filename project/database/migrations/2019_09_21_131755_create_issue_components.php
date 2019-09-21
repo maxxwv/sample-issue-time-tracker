@@ -17,6 +17,7 @@ class CreateIssueComponents extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('issue');
             $table->bigInteger('component');
+            $table->timestamps();
         });
     }
 
