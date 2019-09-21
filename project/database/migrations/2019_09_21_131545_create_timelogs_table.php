@@ -13,7 +13,7 @@ class CreateTimelogsTable extends Migration
      */
     public function up()
     {
-        Schema::table('timelogs', function (Blueprint $table) {
+        Schema::create('timelogs', function (Blueprint $table) {
             $table->bigInteger('id');
             $table->bigInteger('user');
             $table->bigInteger('issue');

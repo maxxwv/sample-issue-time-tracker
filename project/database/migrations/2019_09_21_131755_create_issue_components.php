@@ -13,7 +13,7 @@ class CreateIssueComponents extends Migration
      */
     public function up()
     {
-        Schema::table('issue_components', function (Blueprint $table) {
+        Schema::create('issue_components', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('issue');
             $table->bigInteger('component');

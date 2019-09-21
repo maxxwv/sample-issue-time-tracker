@@ -13,7 +13,7 @@ class CreateIssuesTable extends Migration
      */
     public function up()
     {
-        Schema::table('issues', function (Blueprint $table) {
+        Schema::create('issues', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('code');
             $table->timestamps();
