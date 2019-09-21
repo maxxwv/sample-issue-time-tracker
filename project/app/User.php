@@ -37,6 +37,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Create the one-to-many relationship between the Users and Timelog models
+     *
+     * @return void
+     */
     public function timelogs()
     {
         return $this->hasMany('App\Timelog');
