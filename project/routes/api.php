@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\IssueComponent;
 use App\Http\Controllers\Component;
+use App\Http\Controllers\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +25,9 @@ Route::get('/hydrate/issuecomponents', function(Request $request) {
 });
 Route::get('/hydrate/components', function(Request $request) {
     $c = new Component;
+    return $c->hydrate($request);
+});
+Route::get('/hydrate/users', function(Request $request) {
+    $c = new User;
     return $c->hydrate($request);
 });
