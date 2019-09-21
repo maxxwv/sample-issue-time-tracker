@@ -31,4 +31,26 @@ class User extends Controller
             }
         }
     }
+
+    public function getTotalSeconds()
+    {
+        $users = UserModel::with('timelogs')->get();
+        $ret = [];
+        foreach($users as $user){
+            array_push($ret, [
+                'user_id' => $user->id,
+                'seconds_logged' => $this->calculateTime($user->timelogs)
+            ]);
+        };
+        return json_encode($ret);
+    }
+
+    private function calculateTime($logs)
+    {
+        $totalTime = 0;
+        foreach($logs as $log){
+            $totalTime += $log->seconds_logged;
+        }
+        return $totalTime;
+    }
 }
