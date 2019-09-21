@@ -1,0 +1,31 @@
+version: '3.5'
+
+services:
+  appserver:
+    build:
+      context: '.'
+    container_name: appserver
+    volumes:
+      - .:/var/www/html
+    ports:
+      - 8000:80
+
+  database:
+    image: mysql:5.7
+    container_name: mysql-db
+    volumes:
+      - db
+    environment:
+      - MYSQL_ROOT_PASSWORD=laravel
+      - MYSQL_DATABASE=laravel
+      - MYSQL_USER=laravel
+      - MYSQL_PASSWORD=laravel
+
+  pma:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8181:80
+    environment:
+      - MYSQL_USERNAME=laravel
+      - MYSQL_PASSWORD=laravel
+      - PMA_HOST=database

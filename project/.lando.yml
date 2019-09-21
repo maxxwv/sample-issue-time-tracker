@@ -1,0 +1,8 @@
+name: testing
+recipe: laravel
+config:
+  webroot: public
+services:
+  pma:
+    type: phpmyadmin:4.7
+    hosts: []
