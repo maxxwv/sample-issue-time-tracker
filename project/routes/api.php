@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\IssueComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::get('/user', function (Request $request) {
     return $request->user();
+});
+Route::get('/hydrate/issuecomponents', function(Request $request) {
+    $ic = new IssueComponent;
+    return $ic->hydrate($request);
 });
