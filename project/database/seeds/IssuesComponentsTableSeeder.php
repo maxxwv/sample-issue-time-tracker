@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Http\Controllers\User;
+use App\Http\Controllers\IssueComponent;
 use Illuminate\Http\Request;
 
-class UsersTableSeeder extends Seeder
+class IssuesComponentsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = new User;
+        $user = new IssueComponent;
         $user->hydrate(new Request);
     }
 }
