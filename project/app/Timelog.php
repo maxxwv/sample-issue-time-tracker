@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Timelog extends Model
 {
-    protected $fillabl = [
+    protected $fillable = [
         'issue', 'user', 'seconds',
     ];
 }
