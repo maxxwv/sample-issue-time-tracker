@@ -42,3 +42,8 @@ Route::get('/user-timelogs', function(Request $request) {
     $u = new User;
     return $u->getTotalSeconds();
 });
+
+Route::get('component-metadata', function(Request $request){
+    $c = new Component;
+    return $c->getIssues();
+});

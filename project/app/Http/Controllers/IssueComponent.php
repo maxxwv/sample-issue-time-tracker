@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-use App\Issue;
+use App\Issue as IssueModel;
 use App\IssueComponent as ICModel;
 
 class IssueComponent extends Controller
@@ -26,7 +26,7 @@ class IssueComponent extends Controller
         $client = new Client();
         $issues = $client->request('GET', 'https://my-json-server.typicode.com/bomoko/algm_assessment/issues');
         if($issues->getStatusCode() == 200){
-            Issue::truncate();
+            IssueModel::truncate();
             ICModel::truncate();
             foreach(json_decode($issues->getBody()->getContents()) as $issue){
                 $i = new Issue;
@@ -35,8 +35,8 @@ class IssueComponent extends Controller
                 $i->save();
                 foreach($issue->components as $component){
                     $c = new ICModel;
-                    $c->issue = $issue->id;
-                    $c->component = $component;
+                    $c->issue_id = $issue->id;
+                    $c->component_id = $component;
                     $c->save();
                 }
             }

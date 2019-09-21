@@ -28,4 +28,18 @@ class Component extends Controller
             }
         }
     }
+
+    public function getIssues(){
+        $issues = ComponentModel::with('issues')->get();
+
+        die("<pre>".var_export($issues, true)."</pre>");
+
+        // $timeCalc = new TimeCalculation;
+        // $ret = [];
+        // foreach($issues as $issue){
+        //     array_push($ret, [
+        //         'component_id' => $issue->id,
+        //     ]);
+        // }
+    }
 }
