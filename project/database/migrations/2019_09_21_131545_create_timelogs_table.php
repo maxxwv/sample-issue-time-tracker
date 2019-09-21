@@ -15,9 +15,9 @@ class CreateTimelogsTable extends Migration
     {
         Schema::create('timelogs', function (Blueprint $table) {
             $table->bigInteger('id');
-            $table->bigInteger('user');
-            $table->bigInteger('issue');
-            $table->bigInteger('seconds');
+            $table->bigInteger('user_id');
+            $table->bigInteger('issue_id');
+            $table->bigInteger('seconds_logged');
             $table->timestamps();
         });
     }

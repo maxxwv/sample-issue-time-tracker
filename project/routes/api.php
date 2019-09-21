@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\IssueComponent;
 use App\Http\Controllers\Component;
 use App\Http\Controllers\User;
+use App\Http\Controllers\Timelog;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +30,9 @@ Route::get('/hydrate/components', function(Request $request) {
 });
 Route::get('/hydrate/users', function(Request $request) {
     $c = new User;
+    return $c->hydrate($request);
+});
+Route::get('/hydrate/timelogs', function(Request $request) {
+    $c = new Timelog;
     return $c->hydrate($request);
 });
