@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Component as ComponentModel;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\DB;
 
 class Component extends Controller
 {
@@ -29,17 +30,25 @@ class Component extends Controller
         }
     }
 
+    /**
+     * Create the query to grab all the pertinent records for the rollup query.
+     * Thought I was going to need the newly helper-ized calculateTime function,
+     * but the DB::raw() method came to the rescue for SQL goodness!
+     *
+     * @return void
+     */
     public function getIssues(){
-        $issues = ComponentModel::with('issues')->get();
-
-        die("<pre>".var_export($issues, true)."</pre>");
-
-        // $timeCalc = new TimeCalculation;
-        // $ret = [];
-        // foreach($issues as $issue){
-        //     array_push($ret, [
-        //         'component_id' => $issue->id,
-        //     ]);
-        // }
+        $sql = DB::table('issue_components')
+            ->select(DB::raw('components.name, issue_components.component_id, COUNT(issues.id) AS number_of_issues, SUM(timelogs.seconds_logged) AS seconds_logged'))
+            ->leftJoin('components', 'issue_components.component_id', '=', 'components.id')
+            ->leftJoin('issues', 'issue_components.issue_id', '=', 'issues.id')
+            ->leftJoin('timelogs', 'issue_components.issue_id', '=', 'timelogs.issue_id')
+            ->groupBy('component_id');
+        $components = $sql->get();
+        $ret = [];
+        foreach($components as $component){
+            array_push($ret, $component);
+        };
+        return json_encode($ret);
     }
 }
