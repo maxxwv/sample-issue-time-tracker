@@ -50,6 +50,6 @@ class User extends Controller
                 'seconds_logged' => $timeCalc->calculateTime($user->timelogs)
             ]);
         };
-        return json_encode($ret);
+        return response()->json($ret, 200, [], JSON_NUMERIC_CHECK);
     }
 }

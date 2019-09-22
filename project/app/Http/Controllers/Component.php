@@ -50,6 +50,6 @@ class Component extends Controller
         foreach($components as $component){
             array_push($ret, $component);
         };
-        return json_encode($ret);
+        return response()->json($ret, 200, [], JSON_NUMERIC_CHECK);
     }
 }
