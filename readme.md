@@ -12,7 +12,7 @@
 
 ## Review
 
- - `./vendorbin/phpunit`
+ - `./vendor/bin/phpunit`
  - Or, you can open a browser and point it to http://localhost:8000/component-metadata and http://localhost:8000/user-timelogs
 
 ## Misc
