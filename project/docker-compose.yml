@@ -9,7 +9,6 @@ services:
       - .:/var/www/html
     ports:
       - 8000:80
-    command: php artisan migrate:refresh --seed
 
   database:
     image: mysql:5.7

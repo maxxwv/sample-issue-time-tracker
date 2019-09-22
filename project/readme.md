@@ -1,0 +1,8 @@
+ - clone the repo
+ - open terminal
+ - navigate to the /project directory
+ - `docker-compose up -d`
+ - wait for everything to build (go get a drink of some sort)
+ - `docker-compose run appserver bash`
+ - `./entrypoint.sh`
+ - `./vendorbin/phpunit`
