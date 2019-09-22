@@ -29,7 +29,7 @@ class IssueComponent extends Controller
             IssueModel::truncate();
             ICModel::truncate();
             foreach(json_decode($issues->getBody()->getContents()) as $issue){
-                $i = new Issue;
+                $i = new IssueModel;
                 $i->id = $issue->id;
                 $i->code = $issue->code;
                 $i->save();
