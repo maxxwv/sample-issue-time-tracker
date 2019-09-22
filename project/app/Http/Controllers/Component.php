@@ -40,7 +40,7 @@ class Component extends Controller
      */
     public function getIssues(){
         $sql = DB::table('issue_components')
-            ->select(DB::raw('components.name, issue_components.component_id, COUNT(issues.id) AS number_of_issues, SUM(timelogs.seconds_logged) AS seconds_logged'))
+            ->select(DB::raw('components.name, issue_components.component_id, COUNT(DISTINCT issues.id) AS number_of_issues, SUM(timelogs.seconds_logged) AS seconds_logged'))
             ->leftJoin('components', 'issue_components.component_id', '=', 'components.id')
             ->leftJoin('issues', 'issue_components.issue_id', '=', 'issues.id')
             ->leftJoin('timelogs', 'issue_components.issue_id', '=', 'timelogs.issue_id')
