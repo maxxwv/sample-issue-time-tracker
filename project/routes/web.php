@@ -1,5 +1,9 @@
 <?php
-
+use Illuminate\Http\Request;
+use App\Http\Controllers\IssueComponent;
+use App\Http\Controllers\Component;
+use App\Http\Controllers\User;
+use App\Http\Controllers\Timelog;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,3 +42,48 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/**
+ * Note that I originally created the entire app as an API, but
+ * the boxed test was failing 2 out of 4 tests. I took to the
+ * web and thanks to a friend on a php board I was reminded that
+ * Laravel handles API and web requests separately, so the test
+ * endpoints would have to be prepended with '/api' in order to
+ * work. As the project reqs state that it the tests file should
+ * work as a drop in, I'm copying my API endpoints here in the
+ * hopes that this will fix everything.
+ */
+Route::get('/hydrate/issuecomponents', function(Request $request) {
+    $ic = new IssueComponent;
+    return $ic->hydrate($request);
+});
+Route::get('/hydrate/components', function(Request $request) {
+    $c = new Component;
+    return $c->hydrate($request);
+});
+Route::get('/hydrate/users', function(Request $request) {
+    $u = new User;
+    return $u->hydrate($request);
+});
+Route::get('/hydrate/timelogs', function(Request $request) {
+    $t = new Timelog;
+    return $t->hydrate($request);
+});
+/**
+ * I tried using a Resource Collection here - there's obviously something about those
+ * that I'm missing, because it actively refused to do anything worthwhile. I'd pass in
+ * UserModel::with('timelogs')->get() like I use in \App\Http\Controllers\User::getTotalSeconds(),
+ * and it didn't care. Just printed out absolute garbage, no matter what I fed to it.
+ */
+Route::get('/user-timelogs', function(Request $request) {
+    $u = new User;
+    return $u->getTotalSeconds();
+});
+/**
+ * Run the roll-up query through Component makes the most sense to me as it's based on
+ * and grouped by component records.
+ */
+Route::get('/component-metadata', function(Request $request){
+    $c = new Component;
+    return $c->getIssues();
+});

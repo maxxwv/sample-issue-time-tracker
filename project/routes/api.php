@@ -46,7 +46,7 @@ Route::get('/user-timelogs', function(Request $request) {
  * Run the roll-up query through Component makes the most sense to me as it's based on
  * and grouped by component records.
  */
-Route::get('component-metadata', function(Request $request){
+Route::get('/component-metadata', function(Request $request){
     $c = new Component;
     return $c->getIssues();
 });
